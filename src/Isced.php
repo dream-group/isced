@@ -3,7 +3,7 @@
 /*
  * A lightweight class for working with ISCED fields.
  * 
- * Supports two sets of ISCED coding schemes.
+ * Supports two versions of ISCED coding schemes.
  * Does not require any dependencies.
  *
  * @package DreamLibrary
@@ -14,7 +14,6 @@
 namespace Dream;
 
 use InvalidArgumentException;
-use LogicException;
 
 class Isced
 {
@@ -404,23 +403,23 @@ class Isced
         '1041' => 'Transport services'
     );
 
-    private static $_list;
 
+    public static function isCode($code, $version) {
 
-    public static function isCode($code) {
-
-        return array_key_exists($code, self::_getList());
+        // self::_getList() will make sure a proper version is given by caller
+        return array_key_exists($code, self::_getList($version));
 
     }
 
 
-    public static function fetchNameByCode($code) {
+    public static function fetchNameByCode($code, $version) {
 
         $code = (string) $code;
 
-        $list = self::_getList();
+        // self::_getList() will make sure a proper version is given by caller
+        $list = self::_getList($version);
 
-        if (!array_key_exists($code, $list)) {
+        if (!self::isCode($code, $version)) {
             throw new InvalidArgumentException('Illegal ISCED code: ' . $code);
         }
 
@@ -429,38 +428,61 @@ class Isced
     }
 
 
-    public static function fetchCrumbsByCode($code) {
+    public static function fetchCrumbsByCode($code, $version) {
 
-        echo "asd";
+        $code = (string) $code;
+
+        // self::_getList() will make sure a proper version is given by caller
+        $list = self::_getList($version);
+
+        $crumbs = [];
+
+        do {
+
+            if (array_key_exists($code, $list)) {
+
+                $crumbs[$code] = $list[$code];
+
+            }
+
+            $code = substr($code, 0, -1);
+
+        } while (strlen($code));
+
+        return $crumbs;
 
     }
 
 
-    public static function fetchCodeListing() {
+    public static function fetchCodeListing($version) {
 
-        return self::_getList();
+        // self::_getList() will make sure a proper version is given by caller
+        return self::_getList($version);
 
     }
 
 
-    public function __construct($version) {
+    private function _getList($version) {
+
+        $version = self::_assertVersion($version);
+
+        switch ($version) {
+            case self::VERSION_2011:
+                return self::$codes_v2011;
+            case self::VERSION_2013:
+                return self::$codes_v2013;
+        }
+
+    }
+
+
+    private function _assertVersion($version) {
 
         if (!in_array($version, [self::VERSION_2011, self::VERSION_2013])) {
             throw new InvalidArgumentException('Unknown version: ' . $version);
         }
 
-        switch ($version) {
-            case self::VERSION_2011:
-                $this->_list = self::$codes_v2011;
-            case self::VERSION_2013:
-                $this->_list = self::$codes_v2013;
-        }
-
-    }
-
-    private function _getList() {
-
-        return $this->_list;
+        return $version;
 
     }
 

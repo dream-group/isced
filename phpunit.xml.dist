@@ -13,7 +13,7 @@
     stopOnFailure="false"
     stopOnIncomplete="false"
     stopOnSkipped="false">
-    <testsuite name="Colour Test Suite">
+    <testsuite name="Isced Test Suite">
         <directory suffix="Test.php">./tests</directory>
     </testsuite>
 </phpunit> 

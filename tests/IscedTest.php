@@ -2,7 +2,7 @@
 
 use Dream\Isced;
 
-class IscedTest extends \PHPUnit_Framework_TestCase
+class IscedTest extends PHPUnit_Framework_TestCase
 {
 	
     public function testCodeValidation()

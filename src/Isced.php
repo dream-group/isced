@@ -462,7 +462,7 @@ class Isced
     }
 
 
-    private function _getList($version) {
+    private static function _getList($version) {
 
         $version = self::_assertVersion($version);
 
@@ -476,7 +476,7 @@ class Isced
     }
 
 
-    private function _assertVersion($version) {
+    private static function _assertVersion($version) {
 
         if (!in_array($version, [self::VERSION_1997, self::VERSION_2013])) {
             throw new InvalidArgumentException('Unknown version: ' . $version);

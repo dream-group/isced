@@ -18,11 +18,11 @@ use InvalidArgumentException;
 class Isced
 {
 
-    const VERSION_2011 = '1';
+    const VERSION_1997 = 'ISCED 1997';
     const VERSION_2013 = 'ISCED-F 2013';
 
 
-    private static $codes_v2011 = array(
+    private static $codes_v1997 = array(
         '0' => 'General Programmes',
         '01' => 'Basic/broad, general programmes',
         '010' => 'Basic/broad, general programmes',
@@ -467,8 +467,8 @@ class Isced
         $version = self::_assertVersion($version);
 
         switch ($version) {
-            case self::VERSION_2011:
-                return self::$codes_v2011;
+            case self::VERSION_1997:
+                return self::$codes_v1997;
             case self::VERSION_2013:
                 return self::$codes_v2013;
         }
@@ -478,7 +478,7 @@ class Isced
 
     private function _assertVersion($version) {
 
-        if (!in_array($version, [self::VERSION_2011, self::VERSION_2013])) {
+        if (!in_array($version, [self::VERSION_1997, self::VERSION_2013])) {
             throw new InvalidArgumentException('Unknown version: ' . $version);
         }
 

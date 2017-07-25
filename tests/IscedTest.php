@@ -2,7 +2,7 @@
 
 use Dream\Isced;
 
-class IscedTest extends \PHPUnit\Framework\TestCase
+class IscedTest extends \PHPUnit_Framework_TestCase
 {
 	
     public function testCodeValidation()
@@ -17,7 +17,7 @@ class IscedTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Isced::isCode('311', Isced::VERSION_2013), false);
         $this->assertEquals(Isced::isCode('720', Isced::VERSION_2013), false);
     }
-	
+
     public function testNameByCode()
     {
         $this->assertEquals(Isced::fetchNameByCode('01015', Isced::VERSION_1997), 'Religion/Ethics');
@@ -28,7 +28,7 @@ class IscedTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Isced::fetchNameByCode('061', Isced::VERSION_2013), 'Information and Communication Technologies (ICTs)');
         $this->assertEquals(Isced::fetchNameByCode('0917', Isced::VERSION_2013), 'Traditional and complementary medicine and therapy');
     }
-	
+
     public function testCrumbsByCode()
     {
         $this->assertEquals(Isced::fetchCrumbsByCode('01015', Isced::VERSION_1997), [

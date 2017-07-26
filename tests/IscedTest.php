@@ -2,12 +2,14 @@
 
 use Dream\Isced;
 
-// backward compatibility
-if (!class_exists('\PHPUnit\Framework\TestCase') && class_exists('\PHPUnit_Framework_TestCase')) {
-    class_alias('\PHPUnit_Framework_TestCase', 'PHPUnit\Framework\TestCase');
+// Alias the PHPUnit 6.0 ancestor if available, else fall back to legacy ancestor
+if (class_exists('\PHPUnit\Framework\TestCase', true)) {
+    class IscedTestAncestor extends \PHPUnit\Framework\TestCase {}
+} else {
+    class IscedTestAncestor extends \PHPUnit_Framework_TestCase {}
 }
 
-class IscedTest extends PHPUnit_Framework_TestCase
+class IscedTest extends IscedTestAncestor
 {
 	
     public function testCodeValidation()

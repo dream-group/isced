@@ -56,7 +56,7 @@ class IscedTest extends IscedTestAncestor
 
         $this->assertEquals(Isced::fetchCrumbsByCode('0113', Isced::VERSION_2013), [
             '0113'  => 'Teacher training without subject specialization',
-            '011'   => 'Education 011',
+            '011'   => 'Education',
             '01'    => 'Education'
         ]);
         $this->assertEquals(Isced::fetchCrumbsByCode('061', Isced::VERSION_2013), [

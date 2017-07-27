@@ -56,7 +56,7 @@ class IscedTest extends IscedTestAncestor
 
         $this->assertEquals(Isced::fetchCrumbsByCode('0113', Isced::VERSION_2013), [
             '0113'  => 'Teacher training without subject specialization',
-            '011'   => 'Education 011',
+            '011'   => 'Education',
             '01'    => 'Education'
         ]);
         $this->assertEquals(Isced::fetchCrumbsByCode('061', Isced::VERSION_2013), [
@@ -339,7 +339,7 @@ class IscedTest extends IscedTestAncestor
             '003' => 'Personal skills and development',
             '0031' => 'Personal skills and development',
             '01' => 'Education',
-            '011' => 'Education 011',
+            '011' => 'Education',
             '0111' => 'Education science',
             '0112' => 'Training for pre-school teachers',
             '0113' => 'Teacher training without subject specialization',
@@ -362,7 +362,7 @@ class IscedTest extends IscedTestAncestor
             '031' => 'Social and behavioural sciences',
             '0311' => 'Economics',
             '0312' => 'Political sciences and civics',
-            '0313' => 'Psychology 0313',
+            '0313' => 'Psychology',
             '0314' => 'Sociology and cultural studies',
             '032' => 'Journalism and information',
             '0321' => 'Journalism and reporting',

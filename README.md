@@ -1,6 +1,8 @@
 # ISCED
 Tiny class to do conversions between ISCED field codes and names.
 
+Supports 2 versions of ISCED libraries, ISCED 1997 and ISCED-F 2013.
+
 [![Build Status](https://travis-ci.org/dream-group/isced.svg?branch=master)](https://travis-ci.org/dream-group/isced)
 
 ## Usage
